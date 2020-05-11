@@ -39,4 +39,27 @@ A Form class describes a form and determines how it works and appears.In a simil
 
 ## Building a form in Django
 By Consider the above Registraion example, which we could use to implement “Registraion” functionality on our website: 
-First we need to create **froms.py** file in our app location
+First we need to create **froms.py** file in our app location and import Register model class from models.py
+
+**`models.py`**
+```python
+from django.db import models
+
+class Register(models.Model):
+    firstName = models.CharField(max_length=100)
+    lastName = models.CharField(max_length=100)
+    emailId = models.MailField(null = True)
+    phoneNo = models.CharField(max_length=10)
+    age = models.IntegerField(null=True)
+```
+**`forms.py`**
+```
+from django import forms
+from .models import Register
+
+
+class RegisterForm(forms.ModelForm):
+    class Meta:
+        model = UserRegister
+        fields = "__all__"
+```
