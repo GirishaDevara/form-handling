@@ -37,3 +37,6 @@ Django’s form functionality can simplify and automate vast portions of this wo
 ### The Django Form class
 A Form class describes a form and determines how it works and appears.In a similar way that a model class’s fields map to database fields, a form class’s fields map to HTML form `<input>` elements.
 
+## Building a form in Django
+By Consider the above Registraion example, which we could use to implement “Registraion” functionality on our website: 
+First we need to create **froms.py** file in our app location
