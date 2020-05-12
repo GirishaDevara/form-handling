@@ -107,7 +107,35 @@ This is a very basic form rendering, and as it is, Django will render it like th
 
 Form is working properly but visuals are disappointing, Django provides some predefined ways to show forms in convenient manner. In templates following will modify the inputs as,
 
--   {{ form.as_table }} will render them as table cells wrapped in `<tr>` tags
 -   {{ form.as_p }} will render them wrapped in `<p>` tags
+-   {{ form.as_table }} will render them as table cells wrapped in `<tr>` tags
 -   {{ form.as_ul }} will render them wrapped in `<li>` tags
 > **_NOTE:_** you’ll have to provide the surrounding `<table>` or `<ul>` elements yourself.
+
+##### as_p()
+*Form.as_p()*
+
+as_p() renders the form as a series of `<p>` tags, with each `<p>` containing one field:
+```html
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+```
+Now the result, much better:
+<img src ="screenshots/pic2.JPG">
+##### as_table()
+*Form.as_table()*
+
+
+```
+<form action="" method="post">
+    {% csrf_token %}
+		<table>
+		{{ form.as_table }}
+		</table>
+    <input type="submit" value="Submit">
+</form>
+```
+> **_NOTE:_** Add the {% csrf_token %} to every Django template you create that uses POST to submit data. This will reduce the chance of forms being hijacked by malicious users.
