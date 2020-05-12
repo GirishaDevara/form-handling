@@ -102,3 +102,5 @@ Passing the context of form into register template that looks like this:
 
 All you need to do to get your form into a template is to place the form instance into the template context. So if your form is called form in the context, {{ form }} will render its <label> and <input> elements appropriately.
     
+<img src ="https://github.com/GirishaDevara/form-handling/blob/master/screenshots/pic1.JPG">
+
