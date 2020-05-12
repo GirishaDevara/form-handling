@@ -1,3 +1,32 @@
+## User Registraion
+### Creating a Model
+Model is a blue print for how we gonna store data (Creating the structure of tables).In other words, a model is a class which is used to contain essential fields and methods. Each model class maps to a single table in the database.
+Let’s Create a Register model in `models.py` file
+
+**`models.py`**
+```python
+from django.db import models
+
+
+class Register(models.Model):
+    gender_vals = [('Male', 'Male'), ('FeMale', 'FeMale')]
+    firstName = models.CharField(max_length=100)
+    lastName = models.CharField(max_length=100)
+    emailId = models.EmailField(null=True)
+    phoneNo = models.CharField(max_length=10)
+    age = models.IntegerField(null=True)
+    gender = models.CharField(max_length=10, choices=gender_vals)
+    date_of_birth = models.DateField(null=True)
+```
+Each of our model fields has a related Django field type and field options. The Register model uses four different field types—CharField, DateTimeField, TextField and EmailField.
+
+> **_NOTE:_** Don't forget to mention app name in INSTALLED_APPS list of settings.py file, if you created a new app
+### Sync With database
+Now that we’ve created the model, it’s time to add it to the database. To do this we need to open Command Promnt and run these two commands: 
+-	python manage.py makemigrations 
+-	python manage.py migrate
+Your terminal output should look something like this:
+<img src ="screenshots/migrations.JPG">
 ## Form
 Django provides a range of tools and libraries to help you build forms to accept input from site visitors, and then process and finally send that information back to the server.
 ### HTML forms
@@ -40,17 +69,8 @@ A Form class describes a form and determines how it works and appears.In a simil
 By Consider the above Registraion example, which we could use to implement “Registraion” functionality on our website: 
 First we need to create **froms.py** file in our app location and import Register model class from models.py
 
-**`models.py`**
-```python
-from django.db import models
 
-class Register(models.Model):
-    firstName = models.CharField(max_length=100)
-    lastName = models.CharField(max_length=100)
-    emailId = models.MailField(null = True)
-    phoneNo = models.CharField(max_length=10)
-    age = models.IntegerField(null=True)
-```
+
 We need to import Django forms first (from django import forms) and our Register model (from .models import Register). Next, we have class Meta, where we tell Django which model should be used to create this form (model = Register). Finally, we can say which field(s) should end up in our form. In this scenario if we want only few fields then metion them in a list formate.
 
 **`forms.py`**
