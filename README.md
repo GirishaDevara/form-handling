@@ -101,13 +101,13 @@ Passing the context of form into register template that looks like this:
 > **_NOTE:_** Don’t forget that a form’s output does not include the surrounding `<form>` tags, or the form’s submit control. You will have to provide these yourself.
 
 All you need to do to get your form into a template is to place the form instance into the template context. So if your form is called form in the context, {{ form }} will render its `<label>` and `<input>` elements appropriately.
-This is a very basic form rendering, and as it is, Django will render it like this, with no style, just plain form fields:    
+
+This is a very basic form rendering, and as it is, Django will render it like this, with no style, just plain form fields: 
 <img src ="screenshots/pic1.JPG">
 
 Form is working properly but visuals are disappointing, Django provides some predefined ways to show forms in convenient manner. In templates following will modify the inputs as,
 
-{{ form.as_table }} will render them as table cells wrapped in <tr> tags
-{{ form.as_p }} will render them wrapped in <p> tags
-{{ form.as_ul }} will render them wrapped in <li> tags
-
-
+-   {{ form.as_table }} will render them as table cells wrapped in `<tr>` tags
+-   {{ form.as_p }} will render them wrapped in `<p>` tags
+-   {{ form.as_ul }} will render them wrapped in `<li>` tags
+> **_NOTE:_** you’ll have to provide the surrounding `<table>` or `<ul>` elements yourself.
