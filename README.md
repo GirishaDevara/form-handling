@@ -1,5 +1,5 @@
 ## Form
-Django provides a range of tools and libraries to help you build forms to accept input from site visitors, and then process and respond to the input.
+Django provides a range of tools and libraries to help you build forms to accept input from site visitors, and then process and finally send that information back to the server.
 ### HTML forms
 In HTML, a form is a collection of elements inside `<form>...</form>` that allow a visitor to do things like enter text, select options, manipulate objects or controls, and so on, and then send that information back to the server.
 
@@ -65,6 +65,7 @@ class RegisterForm(forms.ModelForm):
         fields = "__all__"
 ```
 Here’s how the form data could be processed in the view that handles this form:
+
 **`views.py`**
 ```python
 from django.shortcuts import render, redirect, reverse
@@ -87,3 +88,17 @@ def register(request):
     form = RegisterForm()
     return render(request,'register.html',{'form':form})
 ```
+Passing the context of form into register template that looks like this:
+
+**`register.html`**
+```html
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+```
+> **_NOTE:_** Don’t forget that a form’s output does not include the surrounding `<form>` tags, or the form’s submit control. You will have to provide these yourself.
+
+All you need to do to get your form into a template is to place the form instance into the template context. So if your form is called form in the context, {{ form }} will render its <label> and <input> elements appropriately.
+    
