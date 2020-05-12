@@ -7,7 +7,6 @@ Handling forms is a complex business. Consider below Registration example, where
 
 ``` html
     <form class="form" method="post">
-    {% csrf_token %}
     <div class="form-group">
         <label for="firstName">First Name</label>
         <input type="text" id="firstName" name="firstName" placeholder="Enter your First Name">
@@ -52,14 +51,39 @@ class Register(models.Model):
     phoneNo = models.CharField(max_length=10)
     age = models.IntegerField(null=True)
 ```
+We need to import Django forms first (from django import forms) and our Register model (from .models import Register). Next, we have class Meta, where we tell Django which model should be used to create this form (model = Register). Finally, we can say which field(s) should end up in our form. In this scenario if we want only few fields then metion them in a list formate.
+
 **`forms.py`**
-```
+```python
 from django import forms
 from .models import Register
 
 
 class RegisterForm(forms.ModelForm):
     class Meta:
-        model = UserRegister
+        model = Register
         fields = "__all__"
+```
+Here’s how the form data could be processed in the view that handles this form:
+**`views.py`**
+```python
+from django.shortcuts import render, redirect, reverse
+from django.http import HttpResponse
+from .forms import RegisterForm
+from .models import Register
+
+def register(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            firstName = request.POST.get('firstName')
+            lastName = request.POST.get('lastName')
+            emailId = request.POST.get('emailId')
+            phoneNo = request.POST.get('phoneNo')
+            age = request.POST.get('age')
+            model = Register(firstName=firstName, lastName=lastName, emailId=emailId, phoneNo=phoneNo, age=age)
+            model.save()
+            return HttpResponse("Registration successfull")
+    form = RegisterForm()
+    return render(request,'register.html',{'form':form})
 ```
