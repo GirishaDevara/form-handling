@@ -98,6 +98,28 @@ Initially we are using get method, To check how from is working
 </html>
 ```
 > **_NOTE:_** Don’t forget that a form’s output does not include the surrounding `<form>` tags, or the form’s submit control. You will have to provide these yourself.
+### Form validation
+Till now we haven't used post method from register.htmt, a visitor will hit the `submit` button after filling up the details, that means the form method is changed to "POST".
+
+Now our task is to validate the form and save details, for that we need to change register function in views.py 
+
+**`views.py`**
+```python
+def register(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        print(form.is_valid())
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Registration successfull")
+    form = RegisterForm()
+    return render(request,'userApp/register.html',{'form':form})
+```
+
+
+
+Here we got the output like this
 <img src ="screenshots/register1.JPG">
+
 
 > **_NOTE:_** Add the {% csrf_token %} to every Django template you create that uses POST to submit data. This will reduce the chance of forms being hijacked by malicious users.
