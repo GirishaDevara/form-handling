@@ -50,7 +50,7 @@ class RegisterForm(forms.ModelForm):
 We need to import Django forms first (from django import forms) and our Register model (from .models import Register). Next, we have class Meta, where we tell Django which model should be used to create this form (model = Register). Finally, we can say which field(s) should end up in our form. In this scenario if we want only few fields then metion them in a list formate.
 
 Here’s how the form data could be processed in the view that handles this form:
-
+### View 
 **`views.py`**
 ```python
 from django.shortcuts import render
@@ -64,7 +64,7 @@ def register(request):
 ```
 Initially we are using get method, To check how from is working, Here we are using BootstrapCDN
 > **_NOTE:_** Add the {% csrf_token %} to every Django template you create that uses POST to submit data. This will reduce the chance of forms being hijacked by malicious users.
-
+### template
 **`register.html`**
 ```<!DOCTYPE html>
 <html>
@@ -120,8 +120,69 @@ def register(request):
     form = RegisterForm()
     return render(request,'userApp/register.html',{'form':form})
 ```
-> **_NOTE:_** Fill the Data of birth must be in formate of YYYY-MM-DD
+is_valid() validates the form details given by visitor and save the user details in database.
+> **_NOTE:_** Fill the Data of birth must be in formate of YYYY-MM-DD (registration page )
 
+## Display users
+Displaying users is nothing but retrieving information from database, Here we will display all users imformation in a table, for this fallow below steps
+### In views
+Define a function for displaying all user information 
+```python
+def display(request):
+    data = Register.objects.all()
+    return render(request,'userApp/display.html',{'data':data})
+```
+Here data has all users imformation in the form of query set
+### The Template
+In templates create a new html file with the name display.html
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User details</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+    <div class="row justify-content-center">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered table-striped"">
+                    <thead class="bg-info ">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Mail Id</th>
+                            <th>Phone number</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Date of Birth</th>
+                        </tr>
 
-
-
+                    </thead>
+                    <tbody>
+                    {% for info in data %}
+                        <tr>
+                            <td>{{ info.firstName }}</td>
+                            <td>{{ info.lastName }}</td>
+                            <td>{{ info.emailId }}</td>
+                            <td>{{ info.phoneNo }}</td>
+                            <td>{{ info.age }}</td>
+                            <td>{{ info.gender }}</td>
+                            <td>{{ info.date_of_birth }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+```
+**output**
+<img src ="screenshots/display.JPG">
