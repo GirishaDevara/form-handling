@@ -1,4 +1,4 @@
-## User Registraion
+## User Registration
 ### Model Creation
 Model is a blue print for how we gonna store data (Creating the structure of tables).In other words, a model is a class which is used to contain essential fields and methods. Each model class maps to a single table in the database.
 Let’s Create a Register model in `models.py` file
@@ -98,5 +98,6 @@ Initially we are using get method, To check how from is working
 </html>
 ```
 > **_NOTE:_** Don’t forget that a form’s output does not include the surrounding `<form>` tags, or the form’s submit control. You will have to provide these yourself.
+<img src ="screenshots/register1.JPG">
 
 > **_NOTE:_** Add the {% csrf_token %} to every Django template you create that uses POST to submit data. This will reduce the chance of forms being hijacked by malicious users.
