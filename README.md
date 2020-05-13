@@ -98,6 +98,11 @@ Initially we are using get method, To check how from is working
 </html>
 ```
 > **_NOTE:_** Don’t forget that a form’s output does not include the surrounding `<form>` tags, or the form’s submit control. You will have to provide these yourself.
+
+Here we got the output like this
+<img src ="screenshots/register1.JPG">
+
+
 ### Form validation
 Till now we haven't used post method from register.htmt, a visitor will hit the `submit` button after filling up the details, that means the form method is changed to "POST".
 
@@ -118,8 +123,6 @@ def register(request):
 
 
 
-Here we got the output like this
-<img src ="screenshots/register1.JPG">
 
 
 > **_NOTE:_** Add the {% csrf_token %} to every Django template you create that uses POST to submit data. This will reduce the chance of forms being hijacked by malicious users.
