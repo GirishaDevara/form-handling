@@ -62,8 +62,8 @@ def register(request):
     form = RegisterForm()
     return render(request,'register.html',{'form':form})
 ```
-Initially we are using get method, To check how from is working
-> **_NOTE:_** Here we are using BootstrapCDN
+Initially we are using get method, To check how from is working, Here we are using BootstrapCDN
+> **_NOTE:_** Add the {% csrf_token %} to every Django template you create that uses POST to submit data. This will reduce the chance of forms being hijacked by malicious users.
 
 **`register.html`**
 ```<!DOCTYPE html>
@@ -125,4 +125,3 @@ def register(request):
 
 
 
-> **_NOTE:_** Add the {% csrf_token %} to every Django template you create that uses POST to submit data. This will reduce the chance of forms being hijacked by malicious users.
