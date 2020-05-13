@@ -65,54 +65,38 @@ def register(request):
 Initially we are using get method, To check how from is working
 > **_NOTE:_** Here we are using Bootstrap 4
 
-Passing the context of form into register template that looks like this:
-
 **`register.html`**
-```html
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
+```<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="card">
+			<div class="card-header bg-info">Registration Page</div>
+			<div class="card-body">
+				<form method="POST">
+					{% csrf_token %}
+					<table>
+						{{ form.as_table }}
+					</table>
+					<div class="card-footer">
+					<input class="btn btn-info" type="submit" name="submit" value="Submit">
+					</div>
+				</form>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
 ```
 > **_NOTE:_** Don’t forget that a form’s output does not include the surrounding `<form>` tags, or the form’s submit control. You will have to provide these yourself.
 
-All you need to do to get your form into a template is to place the form instance into the template context. So if your form is called form in the context, {{ form }} will render its `<label>` and `<input>` elements appropriately.
-
-This is a very basic form rendering, and as it is, Django will render it like this, with no style, just plain form fields: 
-<img src ="screenshots/pic1.JPG">
-
-Form is working properly but visuals are disappointing, Django provides some predefined ways to show forms in convenient manner. In templates following will modify the inputs as,
-
--   {{ form.as_p }} will render them wrapped in `<p>` tags
--   {{ form.as_table }} will render them as table cells wrapped in `<tr>` tags
--   {{ form.as_ul }} will render them wrapped in `<li>` tags
-> **_NOTE:_** you’ll have to provide the surrounding `<table>` or `<ul>` elements yourself.
-
-##### as_p()
-*Form.as_p()*
-
-as_p() renders the form as a series of `<p>` tags, with each `<p>` containing one field:
-```html
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-</form>
-```
-Now the result, much better:
-<img src ="screenshots/pic2.JPG">
-##### as_table()
-*Form.as_table()*
-
-
-```
-<form action="" method="post">
-    {% csrf_token %}
-		<table>
-		{{ form.as_table }}
-		</table>
-    <input type="submit" value="Submit">
-</form>
-```
 > **_NOTE:_** Add the {% csrf_token %} to every Django template you create that uses POST to submit data. This will reduce the chance of forms being hijacked by malicious users.
