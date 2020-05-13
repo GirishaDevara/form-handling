@@ -63,7 +63,7 @@ def register(request):
     return render(request,'register.html',{'form':form})
 ```
 Initially we are using get method, To check how from is working
-> **_NOTE:_** Here we are using Bootstrap 4
+> **_NOTE:_** Here we are using BootstrapCDN
 
 **`register.html`**
 ```<!DOCTYPE html>
@@ -120,7 +120,7 @@ def register(request):
     form = RegisterForm()
     return render(request,'userApp/register.html',{'form':form})
 ```
-
+> **_NOTE:_** Fill the Data of birth must be in formate of YYYY-MM-DD
 
 
 
