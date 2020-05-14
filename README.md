@@ -102,6 +102,7 @@ Create a register.html file in the templates folder and code up like below
 > **_NOTE:_** Don’t forget that a form’s output does not include the surrounding `<form>` tags, or the form’s submit control. You will have to provide these yourself.
 
 Here we got the output like this
+
 <img src ="screenshots/register1.JPG">
 
 
