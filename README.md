@@ -30,7 +30,7 @@ Your terminal output should look something like this:
 
 > **_NOTE:_** If you made any changes in the model you need to follow these two steps every time.
 
-### Form Creation
+### Model Form Creation
 A Form class describes a form and determines how it works and appears.In a similar way that a model class’s fields map to database fields, a form class’s fields map to HTML form `<input>` elements.
 
 For the above Registraion model, which we could use to implement “Registraion” functionality on our website: 
@@ -50,7 +50,7 @@ class RegisterForm(forms.ModelForm):
 We need to import Django forms first (from django import forms) and our Register model (from .models import Register). Next, we have class Meta, where we tell Django which model should be used to create this form (model = Register). Finally, we can say which field(s) should end up in our form. In this scenario if we want only few fields then metion them in a list formate.
 
 Here’s how the form data could be processed in the view that handles this form:
-### View 
+### Define the Views Function
 **`views.py`**
 ```python
 from django.shortcuts import render
