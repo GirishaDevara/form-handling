@@ -30,6 +30,9 @@ Now that we’ve created the model, it’s time to add it to the database. To do
 Your terminal output should look something like this:
 <img src ="screenshots/migrations.JPG">
 
+**makemigrations** is responsible for packaging up your model changes into individual migration files - analogous to commits
+**migrate** is responsible for applying those to your database.
+
 > **_NOTE:_** If you made any changes in the model you need to follow these two steps every time.
 
 ### Model Form Creation
@@ -129,7 +132,7 @@ is_valid() validates the form details given by visitor and save the user details
 > **_NOTE:_** Fill the Data of birth must be in formate of YYYY-MM-DD (registration page )
 
 ## Display users
-Displaying users is nothing but retrieving information from database, Here we will display all users imformation in a table, for this fallow below steps
+Displaying users is nothing but retrieving information from database, Here we will display all users information in a table, for this fallow below steps
 ### In views
 Define a function for displaying all user information 
 ```python
