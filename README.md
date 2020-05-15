@@ -129,7 +129,7 @@ is_valid() validates the form details given by visitor and save the user details
 > **_NOTE:_** Fill the Data of birth must be in formate of YYYY-MM-DD (registration page )
 
 ## Display users
-Displaying users is nothing but retrieving information from database, Here we will display all users imformation in a table, for this fallow below steps
+Displaying users is nothing but retrieving information from database, Here we will display all users information in a table, for this fallow below steps
 ### In views
 Define a function for displaying all user information 
 ```python
